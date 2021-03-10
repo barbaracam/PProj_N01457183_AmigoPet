@@ -27,7 +27,6 @@ namespace amigopet.Controllers
                 AllowAutoRedirect = false
             };
             client = new HttpClient(handler);
-            //change this to match your own local port number
             client.BaseAddress = new Uri("https://localhost:44358/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
@@ -37,7 +36,7 @@ namespace amigopet.Controllers
 
         }
 
-
+        //Get a list with all the pets
         // GET: Pet/List
         public ActionResult List()
         {
@@ -54,20 +53,14 @@ namespace amigopet.Controllers
             }
         }
 
-
-
-
-
-
-
-        // GET: Pet/Details/5
+        // GET: Pet/Details/2
         public ActionResult Details(int id)
         {
             ShowPet ViewModel = new ShowPet();
             string url = "petdata/findpet/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             //Can catch the status code (200 OK, 301 REDIRECT), etc.
-            //Debug.WriteLine(response.StatusCode);
+            
             if (response.IsSuccessStatusCode)
             {
                 //Put data into pet data transfer object
@@ -88,7 +81,7 @@ namespace amigopet.Controllers
             return View();
         }
 
-        // POST: Player/Create
+        // POST: Pet/Create
         [HttpPost]       
         public ActionResult Create(Pet PetInfo)
         {
@@ -138,7 +131,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // POST: Pet/Edit/5
+        // POST: Pet/Edit/2
         [HttpPost]
         public ActionResult Edit(int id, Pet PetInfo, HttpPostedFileBase PetPic)
         {
@@ -169,7 +162,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // GET: Pet/Delete/2
+        // GET: Pet/DeleteConfirm/2
         [HttpGet]
         public ActionResult DeleteConfirm(int id)
         {
@@ -179,7 +172,7 @@ namespace amigopet.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into player data transfer object
+                //Put data into pet data transfer object
                 PetDto SelectedPet = response.Content.ReadAsAsync<PetDto>().Result;
                 return View(SelectedPet);
             }
@@ -188,7 +181,7 @@ namespace amigopet.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        //Delete Pet
         // POST: Pet/Delete/2
         [HttpPost]
         

@@ -1,0 +1,51 @@
+﻿@model amigopet.Models.ViewModels.ShowAppointment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Amigo Pet</h2>
+<h4>More...Appointment</h4>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pet.PetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pet.PetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetWalker.PetWalkerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetWalker.PetWalkerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentComment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AppointmentID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

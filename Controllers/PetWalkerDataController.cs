@@ -20,9 +20,10 @@ namespace amigopet.Controllers
     {
         private AmigoPetDataContext db = new AmigoPetDataContext();
 
-        // GET: api/PetWalkerData
+
 
         // GET: api/PetWalkerData/GetPetWalkers
+        //List of PetWalker(ID, Name, Bio)
         [ResponseType(typeof(IEnumerable<PetWalkerDto>))]
         public IHttpActionResult GetPetWalkers()
         {
@@ -68,7 +69,7 @@ namespace amigopet.Controllers
 
             return Ok(PetWalkerDto);
         }
-
+        /// Updates a petwalker in the database
         // PUT: api/PetWalkerData/UpdatePetWalker/2
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -104,7 +105,7 @@ namespace amigopet.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        //Add a petwalker to the database
         // POST: api/PetWalkerData/AddPetWalker
         [ResponseType(typeof(PetWalker))]
         [HttpPost]
@@ -121,6 +122,7 @@ namespace amigopet.Controllers
             return Ok(PetWalker.PetWalkerID);
         }
 
+        //Delete a petwalker from the database
         // DELETE: api/PetWalkerData/DeletePetWalker/2
         //[ResponseType(typeof(PetWalker))]????
         public IHttpActionResult DeletePetWalker(int id)

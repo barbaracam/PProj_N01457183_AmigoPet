@@ -1,0 +1,53 @@
+﻿@model amigopet.Models.ViewModels.UpdatePet
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Amigo Pet</h2>
+<h4>Add Pet</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pet.PetName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pet.PetName, new { htmlAttributes = new { @class = "form-control", Name = "PetName" } })
+                @Html.ValidationMessageFor(model => model.Pet.PetName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pet.PetBreed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pet.PetBreed, new { htmlAttributes = new { @class = "form-control", Name = "PetBreed" } })
+                @Html.ValidationMessageFor(model => model.Pet.PetBreed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pet.PetTip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pet.PetTip, new { htmlAttributes = new { @class = "form-control", Name = "PetTip" } })
+                @Html.ValidationMessageFor(model => model.Pet.PetTip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>

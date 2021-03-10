@@ -40,7 +40,7 @@ namespace amigopet.Controllers
         }
 
 
-
+        //Get a list with all the appointments
         // GET: Appointment/List
         public ActionResult List()
         {
@@ -71,7 +71,7 @@ namespace amigopet.Controllers
                 AppointmentDto SelectedAppointment = response.Content.ReadAsAsync<AppointmentDto>().Result;
                 ViewModel.Appointment = SelectedAppointment;
 
-                
+                //get the pet from the appointment
                 url = "Appointmentdata/getpetforappointment/" + id;
                 response = client.GetAsync(url).Result;
                 //Can catch the status code (200 OK, 301 REDIRECT), etc.
@@ -79,12 +79,12 @@ namespace amigopet.Controllers
                 IEnumerable<PetDto> SelectedPets = response.Content.ReadAsAsync<IEnumerable<PetDto>>().Result;
                 ViewModel.Pets = SelectedPets;
 
-
+                //get the pet walker for the appointment
                 url = "teamdata/getpetwalkerforappointment/" + id;
                 response = client.GetAsync(url).Result;
                 //Can catch the status code (200 OK, 301 REDIRECT), etc.
                 //Debug.WriteLine(response.StatusCode);
-                //Put data into Team data transfer object
+                //Put data into appointment data transfer object
                 IEnumerable<PetWalkerDto> SelectedPetWalkers = response.Content.ReadAsAsync<IEnumerable<PetWalkerDto>>().Result;
                 ViewModel.PetWalkers = SelectedPetWalkers;
 
@@ -101,7 +101,7 @@ namespace amigopet.Controllers
         {
             return View();
         }
-
+        //create appointment
         // POST: Appointment/Create
         [HttpPost]
         public ActionResult Create(Appointment AppointmentInfo)
@@ -125,7 +125,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // GET: Appointment/Edit/5
+        // GET: Appointment/Edit/2
         public ActionResult Edit(int id)
         {
             string url = "appointmentdata/findappointment/" + id;
@@ -134,7 +134,7 @@ namespace amigopet.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into Team data transfer object
+                //Put data into appointment data transfer object
                 AppointmentDto SelectedAppointment = response.Content.ReadAsAsync<AppointmentDto>().Result;
                 return View(SelectedAppointment);
             }
@@ -144,7 +144,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // POST: Appointment/Edit/5
+        // POST: Appointment/Edit/2
         [HttpPost]
         public ActionResult Edit(int id, Appointment AppointmentInfo)
         {
@@ -166,7 +166,8 @@ namespace amigopet.Controllers
         }
 
         [HttpGet]
-        // GET: Appointment/Delete/5
+        // GET: Appointment/DeleteConfirm/2
+        
         public ActionResult DeleteConfirm(int id)
         {
             string url = "appointmentdata/findappointment/" + id;
@@ -175,7 +176,7 @@ namespace amigopet.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into Team data transfer object
+                //Put data into appointment data transfer object
                 AppointmentDto SelectedAppointment = response.Content.ReadAsAsync<AppointmentDto>().Result;
                 return View(SelectedAppointment);
             }
@@ -184,8 +185,8 @@ namespace amigopet.Controllers
                 return RedirectToAction("Error");
             }
         }
-
-        // POST: Appointment/Delete/5
+        //Delete Appointment
+        // POST: Appointment/Delete/2
         [HttpPost]
         public ActionResult Delete(int id)
         {

@@ -1,0 +1,47 @@
+﻿@model amigopet.Models.ViewModels.UpdatePetWalker
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Amigo Pet</h2>
+<h4>Edit Pet Walker</h4>
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PetWalker.PetWalkerID, new { Name = "PetWalkerID" })
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PetWalker.PetWalkerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PetWalker.PetWalkerName, new { htmlAttributes = new { @class = "form-control", Name = "PetWalkerName" } })
+                        @Html.ValidationMessageFor(model => model.PetWalker.PetWalkerName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PetWalker.PetWalkerBio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PetWalker.PetWalkerBio, new { htmlAttributes = new { @class = "form-control", Name = "PetWalkerBio" } })
+                        @Html.ValidationMessageFor(model => model.PetWalker.PetWalkerBio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+<div class="extra">
+    @Html.ActionLink("Back to List", "List")
+</div>

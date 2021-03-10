@@ -20,6 +20,8 @@ namespace amigopet.Controllers
         private AmigoPetDataContext db = new AmigoPetDataContext();
 
         // GET: api/PetData/GetPets
+        //List of Pet(ID, Breed, Tip)
+        
         [ResponseType(typeof(IEnumerable<PetDto>))]
         public IHttpActionResult GetPets()
         {
@@ -46,6 +48,9 @@ namespace amigopet.Controllers
 
             return Ok(PetDtos);
         }
+
+
+        //Finds a pet in the database with a 200 status code.
         // GET: api/PetData/FindPet/2
         [HttpGet]
         [ResponseType(typeof(PetDto))]
@@ -70,8 +75,7 @@ namespace amigopet.Controllers
             return Ok(PetDto);
         }
 
-
-
+        /// Updates a pet in the database
         // POST: api/PetData/UpdatePet/2
         // FORM DATA: Pet JSON Object
         [ResponseType(typeof(void))]
@@ -109,6 +113,8 @@ namespace amigopet.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+       
+        /// Receives pet picture data, uploads it to the webserver
         
         [HttpPost]
         public IHttpActionResult UpdatePetPic(int id)
@@ -173,8 +179,9 @@ namespace amigopet.Controllers
             return Ok();
         }
 
+        //Add a pet to the database
         // POST: api/PetData/AddPet
-        // FORM DATA: Player JSON Object
+        // FORM DATA: Pet JSON Object
         [ResponseType(typeof(Pet))]
         [HttpPost]
         public IHttpActionResult AddPet([FromBody]Pet Pet)
@@ -190,6 +197,7 @@ namespace amigopet.Controllers
             return Ok(Pet.PetID);
         }
 
+        //Delete a pet from the database
         // DELETE: api/PetData/DeletePet/2
         [HttpPost]
         //[ResponseType(typeof(Pet))]????

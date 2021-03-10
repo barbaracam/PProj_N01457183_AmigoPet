@@ -1,0 +1,39 @@
+﻿@model IEnumerable<amigopet.Models.PetWalkerDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Pet Walker's - Amigo Pet</h2>
+
+<div class="extra">
+    @Html.ActionLink("Create New", "Create")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PetWalkerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetWalkerBio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetWalkerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetWalkerBio)
+        </td>
+        <td class="extra">
+            @Html.ActionLink("Edit", "Edit", new { id=item.PetWalkerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PetWalkerID }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.PetWalkerID })
+        </td>
+    </tr>
+}
+
+</table>

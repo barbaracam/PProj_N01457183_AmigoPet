@@ -1,0 +1,35 @@
+﻿@model amigopet.Models.ViewModels.ShowPetWalker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Amigo Pet</h2>
+<h4>More...Pet Walker</h4>
+
+<div>
+    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.PetWalker.PetWalkerID })</div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetWalker.PetWalkerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetWalker.PetWalkerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetWalker.PetWalkerBio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetWalker.PetWalkerBio)
+        </dd>
+
+    </dl>
+</div>
+<div class="extra">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetWalker.PetWalkerID }) |
+    @Html.ActionLink("Back to List", "List")
+</div>

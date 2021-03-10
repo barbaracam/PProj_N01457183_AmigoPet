@@ -37,8 +37,8 @@ namespace amigopet.Controllers
 
         }
 
-
-        // GET: Pet/List
+        //Get a list with all the petswalkers
+        // GET: Petwalker/List
         public ActionResult List()
         {
             string url = "petwalkerdata/getpetwalkers";
@@ -54,7 +54,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // GET: PetWalker/Details/5
+        // GET: PetWalker/Details/2
         public ActionResult Details(int id)
         {
             ShowPetWalker ViewModel = new ShowPetWalker();
@@ -105,7 +105,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // GET: PetWalker/Edit/5
+        // GET: PetWalker/Edit/2
         public ActionResult Edit(int id)
         {
             UpdatePetWalker ViewModel = new UpdatePetWalker();
@@ -129,7 +129,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // POST: PetWalker/Edit/5
+        // POST: PetWalker/Edit/2
         [HttpPost]
         public ActionResult Edit(int id, PetWalker PetWalkerInfo)
         {
@@ -150,7 +150,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // GET: PetWalker/Delete/5
+        // GET: PetWalker/DeleteConfirm/2
         public ActionResult DeleteConfirm(int id)
         {
             string url = "petwalkerdata/findpetwalker/" + id;
@@ -159,7 +159,7 @@ namespace amigopet.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into Team data transfer object
+                //Put data into petwalker data transfer object
                 PetWalkerDto SelectedPetWalker = response.Content.ReadAsAsync<PetWalkerDto>().Result;
                 return View(SelectedPetWalker);
             }
@@ -169,7 +169,7 @@ namespace amigopet.Controllers
             }
         }
 
-        // POST: PetWalker/Delete/5
+        // POST: PetWalker/Delete/2
         [HttpPost]
         public ActionResult Delete(int id)
         {

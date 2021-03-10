@@ -291,12 +291,28 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Pet\list.cshtml" />
+    <Content Include="Views\Pet\List.cshtml" />
+    <Content Include="Views\Pet\Edit.cshtml" />
+    <Content Include="Views\Pet\Create.cshtml" />
+    <Content Include="Views\Pet\Details.cshtml" />
+    <Content Include="Views\Pet\Error.cshtml" />
+    <Content Include="Views\Pet\DeleteConfirm.cshtml" />
+    <Content Include="Views\PetWalker\create.cshtml" />
+    <Content Include="Views\PetWalker\List.cshtml" />
+    <Content Include="Views\PetWalker\Error.cshtml" />
+    <Content Include="Views\Appointment\Error.cshtml" />
+    <Content Include="Views\PetWalker\DeleteConfirm.cshtml" />
+    <Content Include="Views\PetWalker\Details.cshtml" />
+    <Content Include="Views\PetWalker\Edit.cshtml" />
+    <Content Include="Views\Appointment\List.cshtml" />
+    <Content Include="Views\Appointment\Details.cshtml" />
+    <Content Include="Views\Appointment\DeleteConfirm.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
+    <Content Include="Views\Appointment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Appointment\" />
-    <Folder Include="Views\PetWalker\" />
+    <Folder Include="Content\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

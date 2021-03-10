@@ -1,0 +1,65 @@
+﻿@model amigopet.Models.PetDto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetBreed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetBreed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetTip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetTip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetHasPic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetHasPic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PicExtension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PicExtension)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Pet", new { id = Model.PetID }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>

@@ -1,57 +1,44 @@
-﻿@model IEnumerable<amigopet.Models.Pet>
+﻿@model IEnumerable<amigopet.Models.PetDto>
 
 @{
     ViewBag.Title = "list";
 }
 
-<h2>list</h2>
+<h2>Amigo Pet</h2>
+<h4>Pets</h4>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetBreed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetTip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetHasPic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PicExtension)
-        </th>
-        <th></th>
-    </tr>
+<div class="record-container">
+    @foreach (var Pet in Model)
+    {
+        <div class="record">
+            <div class="_record">
+                @{
+                    //Use server rendering to determine an image
+                    string pic = "/Content/Pets/default.jpg";
+                    string alt = "No Profile Picture Provided.";
+                    if (Pet.PetHasPic)
+                    {
+                        pic = "/Content/Pets/" + Pet.PetID + "." + Pet.PicExtension;
+                        alt = "Profile shot of " + Pet.PetName + " " + Pet.PetName;
+                    }
+                }
+                <nav class="linknav">
+                    <span class="editlink">@Html.ActionLink("Edit", "Edit", new { id = Pet.PetID })</span>
+                </nav>
+                <div class="imagecontainer">
+                    <img src="@pic" alt="@alt" />
+                </div>
+                <div class="recordtitle">
+                    @Html.ActionLink(Pet.PetName,
+                   "Details",
+                   new { id = Pet.PetID })
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetBreed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetTip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetHasPic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PicExtension)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PetID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PetID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PetID })
-        </td>
-    </tr>
-}
 
-</table>
+            </div>
+        </div>
+    }
+</div>

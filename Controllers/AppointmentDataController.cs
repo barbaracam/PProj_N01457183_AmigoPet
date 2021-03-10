@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using amigopet.Models;
 using System.Diagnostics;
+using System.IO;
 
 namespace amigopet.Controllers
 {
@@ -50,14 +51,10 @@ namespace amigopet.Controllers
             return Ok(AppointmentDtos);
         }
 
-        /// <summary>
-        /// Gets a list of players in the database alongside a status code (200 OK).
-        /// </summary>
-        /// <param name="id">The input teamid</param>
-        /// <returns>A list of players associated with the team</returns>
-        /// <example>
-        /// GET: api/TeamData/GetPlayersForTeam
-        /// </example>
+        
+        /// Gets a list of pet for the appointment     
+        /// GET: api/appointmentData/GetPetForAppointment
+        
         [HttpGet]
         [ResponseType(typeof(PetDto))]
         public IHttpActionResult GetPetForAppointment(int id)
@@ -83,6 +80,8 @@ namespace amigopet.Controllers
             return Ok(PetDto);
         }
 
+        /// Gets a list of petwalker for the appointment     
+        /// GET: api/appointmentData/GetPetWalkerForAppointment
         [HttpGet]
             [ResponseType(typeof(PetWalkerDto))]
             public IHttpActionResult GetPetWalkerForAppointment(int id)
@@ -109,15 +108,9 @@ namespace amigopet.Controllers
                 return Ok(PetWalkerDto);
             }
 
-        /// <summary>
-        /// Finds Appointment in the database 
-        /// </summary>
-        /// <param name="id">The Appointment id</param>
-        /// <returns>Information about the Appointment</returns>
-        // <example>
+        //Finds a pet in the database with a 200 status code.
         // GET: api/AppointmentData/FindAppointment/2
 
-        // </example>
         [ResponseType(typeof(AppointmentDto))]
         [HttpGet]
         public IHttpActionResult FindAppointment(int id)
@@ -143,16 +136,8 @@ namespace amigopet.Controllers
             return Ok(AppointmentDto);
         }
 
-        /// <summary>
-        /// Updates an Appointment in the database given information about the Team.
-        /// </summary>
-        /// <param name="id">The Appointment id</param>
-        /// <example>
-        /// POST: api/AppointmentData/UpdateAppointment/2
-        /// </example>
-
-
-
+        
+        /// Updates an Appointment in the database
         // PUT: api/AppointmentData/UpdateAppointment/2
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -189,16 +174,10 @@ namespace amigopet.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        /// <summary>
+        
         /// Adds an Appointment to the database.
-        /// </summary>
-        /// <returns>status code 200 if successful. 400 if unsuccessful</returns>
-        /// <example>
-        /// POST: api/AppointmentData/AddAppointment
-        /// </example>
-
-
         // POST: api/AppointmentData/AddAppointment
+
         [ResponseType(typeof(Appointment))]
         [HttpPost]
         public IHttpActionResult AddAppointment([FromBody]Appointment Appointment)
@@ -214,14 +193,10 @@ namespace amigopet.Controllers
             return Ok(Appointment.AppointmentID);
         }
 
-        /// <summary>
+        
         /// Deletes an Appointment in the database
-        /// </summary>
-        /// <param name="id">The id of the Appointment to delete.</param>
-        /// <returns>200 if successful. 404 if not successful.</returns>
-        /// <example>
         /// POST: api/AppointmentData/DeleteAppointment/2
-        /// </example>
+       
         public IHttpActionResult DeleteAppointment(int id)
         {
             Appointment Appointment = db.Appointments.Find(id);
@@ -245,20 +220,13 @@ namespace amigopet.Controllers
             base.Dispose(disposing);
         }
 
-
-
-        /// <summary>
         /// Finds an Appointment in the system. Internal use only.
-        /// </summary>
+       
         private bool AppointmentExists(int id)
         {
             return db.Appointments.Count(e => e.AppointmentID == id) > 0;
         }
 
        
-
-
-
-
-    }
+     }
 }
